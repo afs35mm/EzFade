@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <title>EzFade jQuery Plugin | AFS35MM</title>
+        
+        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <style>
+            body{}
+            #col{margin: 0 auto; width:660px;}
+            #col #head {text-align:center;}
+            #col #head h4 {padding-bottom:40px;}
+            #col #fadeMe {margin: 0px auto;}
+            #col #main h4{padding: 20px 0; text-align:center;}
+        </style>
+    </head>
+    <body>
+        <div id="col">
+            <div id="head">
+            <h1>
+                EzFade jQuery Plugin
+            </h1>
+            <h4>
+                Lightweight fade plugin, sans-controls. Resizes all images, keeping aspect ratio, center images, and fill up entire containing element.
+            </h4>
+            
+            </div>
+            <div id="fadeMe">
+                    <img src="http://farm9.staticflickr.com/8195/8126831424_88c3d6f6d6_b.jpg" alt="">
+                    <img src="http://farm9.staticflickr.com/8473/8101466317_c9c40605c5_b.jpg" alt="">
+                    <img src="http://farm9.staticflickr.com/8323/8126832276_a82bd4085d_b.jpg" alt="">
+                    <img src="http://farm9.staticflickr.com/8466/8126819073_5b60df72a3_b.jpg" alt="">
+                    <img src="http://farm9.staticflickr.com/8331/8126804069_376b7482f1_b.jpg" alt="">
+            </div>
+            <p style="text-align:right; font-size:11px;">Photography courtsey of <a href="http://www.twitter.com/afs35mm" target="_blank">yours truly</a> :)</p>
+            <div id="main">
+                <h4>
+                    Throw some images in a container and slap a jQuery $('example').ExFade() and boom. 
+                </h4>
+                
+                <h3>
+                    <a href="https://github.com/afs35mm/EzFade" target="_blank">Github Page</a>
+                </h3>
+                 <h3>
+                    <a href="EzFade.js">Plugin Source Code</a>
+                </h3>
+                
+                <p>
+                    Options are added as an object passed to the EzFade function.<br>
+                    <span style="font-weight:600;">Ex: </span>
+                    <span style="font-style:italic"> $('#fadeMe').EzFade({ width:'100%', height:'100%' });</span>
+                </p>
+
+
+       
+                <table class="table table-striped table-hover table-bordered">
+                    <tr>
+                        <th>Property</th>
+                        <th>Type</th>
+                        <th>Options</th>
+                        <th>Default</th>
+                    </tr>
+                    <tr>
+                        <td>duration</td>
+                        <td>Number</td>
+                        <td>Anything. Determines length between transitions. In milliseconds.</td>
+                        <td>3000</td>
+                    </tr>
+                    <tr>
+                        <td>parentName</td>
+                        <td>String</td>
+                        <td>Optional. Gives the container of slideshow element class of specified string. This allows for style targeting in stylesheet. </td>
+                        <td>EzFade</td>
+                    </tr>
+                    <tr>
+                        <td>elmName</td>
+                        <td>String</td>
+                        <td>Optional. Gives the elements of slideshow class of specified string. This allows for style targeting in stylesheet. </td>
+                        <td>EzFadeElm</td>
+                    </tr>
+                     <tr>
+                        <td>fadeSpeed</td>
+                        <td>Number</td>
+                        <td>Anything. Determines lenght of fade. In milliseconds. </td>
+                        <td>1000</td>
+                    </tr>
+                    <tr>
+                        <td>width</td>
+                        <td>Number</td>
+                        <td>Standard CSS width attibutes only. Gives slideshow a width.</td>
+                        <td>600</td>
+                    </tr>
+                    <tr>
+                        <td>height</td>
+                        <td>Number</td>
+                        <td>Standard CSS height attibutes only. Gives slideshow a height.</td>
+                        <td>400</td>
+                    </tr>
+                    <tr>
+                        <td>position</td>
+                        <td>String</td>
+                        <td>Standard CSS positioning attibutes only. Gives slideshow a position.</td>
+                        <td>relative</td>
+                    </tr>
+        
+                </table>
+
+            <p style="text-align:center;">Made by <a href="/" target="_blank">AFS35MM</a></p>
+          
+            </div>            
+
+        </div>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script src="EzFade.js"></script>
+        <script>
+            $(document).ready(function(){
+                
+                $('#fadeMe').EzFade();
+               
+            });
+        </script>
+
+    </body>
+</html>
