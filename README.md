@@ -9,7 +9,7 @@ Throw some images in a container and slap a jQuery $('example').ExFade() and boo
 
 Working demo example here: <ahref="http://afs35mm.com/EzFade/index.html" target="_blank">afs35mm.com/EzFade/index.html</a>
 
-Useage
+Usage
 ------
 Options are added as an object passed to the EzFade function. 
 
@@ -20,7 +20,7 @@ $('#fadeMe').EzFade({
 });
 </pre>
 
- <table>
+<table>
         <tr>
             <th>Property</th>
             <th>Type</th>
@@ -69,5 +69,4 @@ $('#fadeMe').EzFade({
             <td>Standard CSS positioning attibutes only. Gives slideshow a position.</td>
             <td>relative</td>
         </tr>
-
-    </table>
+</table>
