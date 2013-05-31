@@ -7,7 +7,7 @@ Lightweight fade plugin, sans-controls. Resizes all images, keeping aspect ratio
 
 Throw some images in a container and slap a jQuery $('example').ExFade() and boom. 
 
-Working demo example here: <ahref="http://afs35mm.com/EzFade/index.html" target="_blank">afs35mm.com/EzFade/index.html</a>
+Working demo example here: [afs35mm.com/EzFade/index.html](http://afs35mm.com/EzFade/index.html)
 
 Usage
 ------
