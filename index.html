@@ -4,38 +4,50 @@
         <meta charset="utf-8">
         <title>EzFade jQuery Plugin | AFS35MM</title>
         
-        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="bootstrap.min.css">
         <style>
             body{}
-            #col{margin: 0 auto; width:660px;}
-            #col #head {text-align:center;}
-            #col #head h4 {padding-bottom:40px;}
-            #col #fadeMe {margin: 0px auto;}
-            #col #main h4{padding: 20px 0; text-align:center;}
+            #head{height:400px; width:100%; }
+            #head #copy {position:absolute; top:140px; text-align:center; width:100%;}
+            #head #copy h1 {font-size:58px;padding-bottom:25px;}
+            #head #copy h4 { font-size:26px; line-height:28px;}
+            #head #copy h1, #head #copy h4 {width:600px; margin: 0 auto;color: #FFFFF0; text-shadow: 5px 5px 12px rgba(0, 0, 0, 0.64);}
+            #main{width:100%; }
+            #main #center{width:660px; margin: 0 auto;  }
+            #main #center h4{ text-align:center; margin-top:20px; font-size:21px; line-height:23px;}
+            #main #center p {margin-bottom:20px;}
         </style>
     </head>
     <body>
-        <div id="col">
-            <div id="head">
-            <h1>
-                EzFade jQuery Plugin
-            </h1>
-            <h4>
-                Lightweight fade plugin, sans-controls. Resizes all images, keeping aspect ratio, center images, and fill up entire containing element.
-            </h4>
-            
-            </div>
+        <div id="head">
             <div id="fadeMe">
-                    <img src="http://farm9.staticflickr.com/8195/8126831424_88c3d6f6d6_b.jpg" alt="">
-                    <img src="http://farm9.staticflickr.com/8473/8101466317_c9c40605c5_b.jpg" alt="">
-                    <img src="http://farm9.staticflickr.com/8323/8126832276_a82bd4085d_b.jpg" alt="">
-                    <img src="http://farm9.staticflickr.com/8466/8126819073_5b60df72a3_b.jpg" alt="">
-                    <img src="http://farm9.staticflickr.com/8331/8126804069_376b7482f1_b.jpg" alt="">
+                
+                <img src="http://farm3.staticflickr.com/2420/2246753615_4ce1e7fe56_o.jpg" alt="">
+                <img src="http://farm3.staticflickr.com/2063/2247543908_19a0e43e46_o.jpg" alt=""> 
+                <img src="http://farm3.staticflickr.com/2366/2246752681_0fd5f7324b_o.jpg" alt="">
+                <img src="http://farm3.staticflickr.com/2162/2246752311_e5f74fa38d_o.jpg" alt="">
+                
+                <img src="http://farm3.staticflickr.com/2323/2247546802_a6e649785f_o.jpg" alt="">
+               
+
+                
+                
+
+                
             </div>
-            <p style="text-align:right; font-size:11px;">Photography courtsey of <a href="http://www.twitter.com/afs35mm" target="_blank">yours truly</a> :)</p>
-            <div id="main">
+            <div id="copy">
+                <h1>
+                    EzFade jQuery Plugin
+                </h1>
                 <h4>
-                    Throw some images in a container and slap a jQuery $('example').ExFade() and boom. 
+                    Lightweight fade plugin, sans-controls. Resizes all images, keeping aspect ratio, center images, and fill up entire containing element.
+                </h4>
+            </div>
+       </div>
+        <div id="main">
+            <div id="center">
+                <h4>
+                    Throw some images in a container and slap a jQuery $('example').EzFade() and boom. 
                 </h4>
                 
                 <h3>
@@ -44,11 +56,10 @@
                  <h3>
                     <a href="EzFade.js">Plugin Source Code</a>
                 </h3>
-                
+                <br>
                 <p>
-                    Options are added as an object passed to the EzFade function.<br>
-                    <span style="font-weight:600;">Ex: </span>
-                    <span style="font-style:italic"> $('#fadeMe').EzFade({ width:'100%', height:'100%' });</span>
+                    <span style="font-weight:600;">Useage Exampe: </span>
+                    <span style="font-style:italic"> $('#fadeMe').EzFade({ width:'420px', height:'420px' });</span>
                 </p>
 
 
@@ -88,13 +99,13 @@
                         <td>width</td>
                         <td>Number</td>
                         <td>Standard CSS width attibutes only. Gives slideshow a width.</td>
-                        <td>600</td>
+                        <td>100%</td>
                     </tr>
                     <tr>
                         <td>height</td>
                         <td>Number</td>
                         <td>Standard CSS height attibutes only. Gives slideshow a height.</td>
-                        <td>400</td>
+                        <td>100%</td>
                     </tr>
                     <tr>
                         <td>position</td>
@@ -105,11 +116,11 @@
         
                 </table>
 
-            <p style="text-align:center;">Made by <a href="/" target="_blank">AFS35MM</a></p>
+            <p style="text-align:center;">Made by <a href="/" target="_blank">AFS35MM</a>, photographs by yours truly :)</p>
           
-            </div>            
-
+            </div>
         </div>
+     
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
         <script src="EzFade.js"></script>
         <script>

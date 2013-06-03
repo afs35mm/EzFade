@@ -5,8 +5,8 @@
             parentName: 'EzFade',
             elmName: 'EzFadeElm',
             fadeSpeed: 1000,
-            width: '660',
-            height: '400',
+            width: '100%',
+            height: '100%',
             position: 'relative'
         }, options);        
         $(this).each(function(){
@@ -21,29 +21,38 @@
             var containerHeight = self.height(),
                 containerWidth = self.width();
                 ratio = containerWidth / containerHeight;
-            self.children('img').each(function(pos,value){
-                var elm = $(this);
-                console.log(pos,value);
-                elm.load(function(){
-                    var elmRatio = elm.width() / elm.height();
-                    if( ratio <= elmRatio){
-                        elm.css('height', containerHeight)
-                        .css( 'left', -(elm.width() - containerWidth) / 2 );
-                    }else if (ratio > elmRatio ){
-                       elm.css('width', containerWidth)
-                       .css( 'top', -(elm.height() - containerHeight) / 2 );
+            self.children().each(function(pos,value){
+                $(this).load(function(){
+                    var elm = $(this);
+                        var elmRatio = elm.width() / elm.height();
+                        if( ratio <= elmRatio){
+                            elm.css('height', containerHeight)
+                            .css({'left': -(elm.width() - containerWidth) / 2,
+                                    'min-height': '100%',
+                                    'width' : 'auto'
+                                });
+                        }else if (ratio > elmRatio ){
+                           elm.css('width', containerWidth)
+                           .css({ 'top': -(elm.height() - containerHeight) / 2,
+                                    'min-width': '100%',
+                                    'height' : 'auto' 
+                                });
+                        }
+                    if(pos == 0){
+                        elm.addClass(settings.elmName).css({
+                            'position':'absolute',
+                        });
+                    }else{
+                        elm.addClass(settings.elmName).css({
+                            'position':'absolute',
+                            'opacity' : '0'
+                        });
+                    }
+                }).each(function(){
+                    if(this.complete){
+                        $(this).trigger('load');
                     }
                 });
-                if(pos == 0){
-                    elm.addClass(settings.elmName).css({
-                        'position':'absolute',
-                    });
-                }else{
-                    elm.addClass(settings.elmName).css({
-                        'position':'absolute',
-                        'opacity' : '0'
-                    });
-                }
             });
             setInterval(function(){
                 self.children(":first")

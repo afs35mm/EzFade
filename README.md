@@ -15,8 +15,8 @@ Options are added as an object passed to the EzFade function.
 
 <pre>
 $('#fadeMe').EzFade({ 
-	width:'100%', 
-	height:'100%' 
+	width:'420px', 
+	height:'420px' 
 });
 </pre>
 
