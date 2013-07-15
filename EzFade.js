@@ -1,68 +1,135 @@
-(function($) {
-    $.fn.EzFade = function(options) {
-    	var settings = $.extend({
+//jQuery boilerplate used, from http://jqueryboilerplate.com/ thx people smarter than me!
+;(function ( $, window, document, undefined ) {
+    // Create the defaults once
+    var pluginName = "EzFade",
+        defaults = {
             duration: 3000,
             parentName: 'EzFade',
-            elmName: 'EzFadeElm',
+            childName: 'EzFadeElm',
             fadeSpeed: 1000,
             width: '100%',
-            height: '100%',
+            height: '600',
             position: 'relative'
-        }, options);        
-        $(this).each(function(){
-            var self = $(this),
-                elmID = self.attr('id');
-            self.css({
-                'width' : settings.width,
-                'height' : settings.height,
-                'position': settings.position, 
-                'overflow': 'hidden'
-            }).addClass(settings.parentName);
-            var containerHeight = self.height(),
-                containerWidth = self.width();
-                ratio = containerWidth / containerHeight;
-            self.children().each(function(pos,value){
-                $(this).load(function(){
-                    var elm = $(this);
-                        var elmRatio = elm.width() / elm.height();
-                        if( ratio <= elmRatio){
-                            elm.css('height', containerHeight)
-                            .css({'left': -(elm.width() - containerWidth) / 2,
-                                    'min-height': '100%',
-                                    'width' : 'auto'
-                                });
-                        }else if (ratio > elmRatio ){
-                           elm.css('width', containerWidth)
-                           .css({ 'top': -(elm.height() - containerHeight) / 2,
-                                    'min-width': '100%',
-                                    'height' : 'auto' 
-                                });
-                        }
-                    if(pos == 0){
-                        elm.addClass(settings.elmName).css({
-                            'position':'absolute',
-                        });
-                    }else{
-                        elm.addClass(settings.elmName).css({
-                            'position':'absolute',
-                            'opacity' : '0'
-                        });
-                    }
-                }).each(function(){
-                    if(this.complete){
-                        $(this).trigger('load');
-                    }
+        };
+
+    // plugin constructor
+    function Plugin( element, options ) {
+        this.element = $(element);
+        self = this;
+        this.options = $.extend( {}, defaults, options );
+        this._defaults = defaults;
+        this._name = pluginName;        
+        this.container ={}
+        this.init();
+        console.log(this);
+        $(window).resize(function(){
+            self.getContainerSize(self.element, self.container, function(){
+                self.element.children().each(function(key,value){
+                    var $val = $(value);
+                    self.resizePhoto($val);     
                 });
             });
-            setInterval(function(){
-                self.children(":first")
-                    .animate({'opacity':0},settings.fadeSpeed)
-                    .next('img')
-                    .animate({'opacity':100},settings.fadeSpeed)
-                    .end()
-                    .appendTo('#' + elmID);
-            },settings.duration); 
         });
-        return this;
     }
-}(jQuery));
+
+    Plugin.prototype = {
+        //initializes the set interval to show and 'hide' each image
+        startFade: function(el){
+            setInterval(function(){
+                $(el).children(":first")
+                    .animate({'opacity':0},self.options.fadeSpeed)
+                    .next('img')
+                    .animate({'opacity':100},self.options.fadeSpeed)
+                    .end()
+                    .appendTo(el);
+            },self.options.duration); 
+        },
+
+        //method for finding the parent size so it knows how to size the child elements
+        getContainerSize: function(el,obj,callback){
+            obj.width = el.innerWidth();
+            obj.height = el.height();
+            obj.ratio = obj.width / obj.height;
+            if(callback){
+                callback();
+            }
+        },
+
+        //Tha money shot!
+        resizePhoto: function(photo){
+            var photoHeight = photo.height(),
+                photoWidth = photo.width(),
+                photoRatio = photoWidth / photoHeight,
+                resizeAmt = null;
+            //resizes based on height or width
+            if(photoRatio <= self.container.ratio){
+                resizeAmt = photoHeight * ( self.container.width / photoWidth );
+                photo.css({
+                    'width': self.container.width,
+                    'top' : - ((resizeAmt - self.container.height) / 2),
+                    'height' : 'auto',
+                    'left' : 'auto'
+                });
+            }else{
+                resizeAmt = photoWidth * ( self.container.height / photoHeight );
+                photo.css({
+                    'height': self.container.height,
+                    'left': - ((resizeAmt - self.container.width) / 2),
+                    'top' : 'auto',
+                    'width' : 'auto'
+                });
+            }
+        },
+
+        init: function() {
+            //As soon as it loads add classes and styles to parent and children
+            //Loading animation "borrowed" from Kelly Dyson @ http://dontwakemeup.com/css-loading-animation/
+            //Plz don't sue me :)
+            var loadIcon = $(
+                '<div class="spinner"><div class="b1 se"></div><div class="b2 se"></div><div class="b3 se"></div><div class="b4 se"></div><div class="b5 se"></div><div class="b6 se"></div><div class="b7 se"></div><div class="b8 se"></div><div class="b9 se"></div><div class="b10 se"></div><div class="b11 se"></div><div class="b12 se"></div></div>');
+            loadIcon.insertBefore(self.element);
+            self.element.addClass(self.options.parentName)
+                .css({
+                    'overflow': 'hidden',
+                    'height' : self.options.height,
+                    'width': self.options.width,
+                    'position': self.options.position
+                })
+                .children('img').each(function(key,val){
+                    $val = $(val);
+                    $val.addClass(self.options.childName).css({
+                        'position': 'absolute',
+                        'opacity': '0'
+                    });
+                });
+            //when it loads finally resize all elements
+            $(window).load(function(){
+                loadIcon.hide();
+                self.getContainerSize(self.element, self.container, function(){
+                    self.element.children().each(function(key,value){
+                        var $val = $(value);
+                        self.resizePhoto($val);
+                        if(key == 0){
+                            $val.css({
+                                'opacity' : '100'
+                            });
+                        }
+                    });
+                });
+                self.startFade(self.element);
+            });
+        }
+  
+    };
+
+    $.fn[pluginName] = function ( options ) {
+        return this.each(function () {
+            if (!$.data(this, "plugin_" + pluginName)) {
+                $.data(this, "plugin_" + pluginName, new Plugin( this, options ));
+            }
+        });
+    };
+
+
+
+})( jQuery, window, document );
