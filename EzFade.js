@@ -68,7 +68,8 @@
                     'width': self.container.width,
                     'top' : - ((resizeAmt - self.container.height) / 2),
                     'height' : 'auto',
-                    'left' : 'auto'
+                    'left' : 'auto',
+                    'max-width' : '100%',
                 });
             }else{
                 resizeAmt = photoWidth * ( self.container.height / photoHeight );
@@ -76,8 +77,10 @@
                     'height': self.container.height,
                     'left': - ((resizeAmt - self.container.width) / 2),
                     'top' : 'auto',
-                    'width' : 'auto'
+                    'width' : 'auto',
+                    'max-width' : 'none',
                 });
+                console.log('else');
             }
         },
 
